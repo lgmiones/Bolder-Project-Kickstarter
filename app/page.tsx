@@ -1,69 +1,101 @@
-import Image from "next/image";
+import RewardsSidebar from "@/components/RewardsSidebar";
+import { ChevronRightIcon } from "@/components/Icons";
 
-export default function Home() {
+/**
+ * Campaign tab.
+ * All prose below is placeholder copy — replace the strings with the real
+ * campaign story. Image slots are marked with the .ksr-placeholder class.
+ */
+
+const STORY_PARAGRAPHS = [
+  "Placeholder paragraph. Replace this text with the opening of the campaign story — the hook that explains what the project is and why it exists.",
+  "Placeholder paragraph. This second block is where the background and origin of the project goes: how it started, who noticed it first, and what happened next.",
+  "Placeholder paragraph. Use this block to describe the work itself — the shape of the show, the tone, and what an audience can expect from it.",
+];
+
+const TEAM_PARAGRAPHS = [
+  "Placeholder paragraph. Introduce the writers and creators here, with a sentence or two on each.",
+  "Placeholder paragraph. Add the producing team, collaborators, and any partners attached to the project.",
+];
+
+const WHY_PARAGRAPHS = [
+  "Placeholder paragraph. Explain why the campaign is running now and what the funds unlock.",
+  "Placeholder paragraph. Close with the ask, and what backers make possible.",
+];
+
+function SectionBanner({ label }: { label: string }) {
+  return <div className="ksr-placeholder my-8 aspect-[16/7] w-full">{label}</div>;
+}
+
+export default function CampaignPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <>
+      <div className="mx-auto max-w-[1240px] px-4 py-10">
+        <div className="grid grid-cols-12 gap-x-10 gap-y-10">
+          {/* Story column */}
+          <div className="col-span-12 lg:col-span-8">
+            <SectionBanner label="Hero image — what is The Pyramid?" />
+
+            {STORY_PARAGRAPHS.map((p, i) => (
+              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
+                {p}
+              </p>
+            ))}
+
+            <SectionBanner label="Story image" />
+
+            <h2 className="mb-4 mt-10 text-[22px] font-bold">Our Story</h2>
+            {TEAM_PARAGRAPHS.map((p, i) => (
+              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
+                {p}
+              </p>
+            ))}
+
+            <SectionBanner label="Team photo" />
+
+            <h2 className="mb-4 mt-10 text-[22px] font-bold">
+              The Team Bringing The Pyramid To Life
+            </h2>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="ksr-placeholder aspect-square w-full text-[10px]">
+                  Headshot {i + 1}
+                </div>
+              ))}
+            </div>
+
+            <h2 className="mb-4 mt-10 text-[22px] font-bold">Why Kickstarter</h2>
+            {WHY_PARAGRAPHS.map((p, i) => (
+              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
+                {p}
+              </p>
+            ))}
+
+            <h2 className="mb-4 mt-10 text-[22px] font-bold">Rewards</h2>
+            <SectionBanner label="Rewards graphic" />
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="/rewards"
+              className="inline-flex items-center gap-1 text-[15px] font-medium text-ksr-green hover:underline"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              See all rewards
+              <ChevronRightIcon width={14} height={14} />
+            </a>
+
+            <div id="risks" className="mt-14 border-t border-ksr-border-soft pt-8">
+              <h2 className="mb-3 text-[18px] font-bold">Risks and challenges</h2>
+              <p className="text-[16px] leading-[1.7]">
+                Placeholder paragraph. Replace with the risks and challenges
+                statement for the project.
+              </p>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="col-span-12 lg:col-span-4">
+            <RewardsSidebar />
+          </aside>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

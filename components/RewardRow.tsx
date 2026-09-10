@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { formatAmount, type Reward } from "@/lib/rewards";
-import { BoxIcon, ChevronDownIcon, ClockIcon, TruckIcon, UsersIcon } from "./Icons";
+import { formatAmount, formatAvailable, type Reward } from "@/lib/rewards";
+import { BoxIcon, ChevronDownIcon, TagIcon, UsersIcon } from "./Icons";
 
 function MetaRow({
   icon,
@@ -39,7 +39,10 @@ export default function RewardRow({ reward }: { reward: Reward }) {
       <div className="col-span-12 lg:col-span-5">
         <div className="overflow-hidden rounded-[4px] border border-ksr-green bg-white lg:sticky lg:top-24">
           <div className="p-5">
-            <h3 className="text-[17px] font-bold uppercase leading-snug tracking-tight">
+            <p className="text-[12px] font-bold uppercase tracking-wide text-ksr-text-soft">
+              Tier {reward.tier}
+            </p>
+            <h3 className="mt-1 text-[17px] font-bold uppercase leading-snug tracking-tight">
               {reward.title}
             </h3>
             <p className="mt-2 text-[22px] font-bold">
@@ -48,21 +51,14 @@ export default function RewardRow({ reward }: { reward: Reward }) {
 
             <div className="mt-4 divide-y divide-ksr-border-soft border-y border-ksr-border-soft">
               <MetaRow
-                icon={<UsersIcon width={14} height={14} />}
-                label="Backers"
-                value={String(reward.backers)}
+                icon={<TagIcon width={14} height={14} />}
+                label="Total value"
+                value={`$${formatAmount(reward.totalValue)}`}
               />
-              {reward.shipsTo && (
-                <MetaRow
-                  icon={<TruckIcon width={14} height={14} />}
-                  label="Ships to"
-                  value={reward.shipsTo}
-                />
-              )}
               <MetaRow
-                icon={<ClockIcon width={14} height={14} />}
-                label="Estimated delivery"
-                value={reward.estimatedDelivery}
+                icon={<UsersIcon width={14} height={14} />}
+                label="Available"
+                value={formatAvailable(reward.available)}
               />
             </div>
 
@@ -100,7 +96,7 @@ export default function RewardRow({ reward }: { reward: Reward }) {
 
           <div className="px-5 pb-5">
             <button type="button" className="ksr-btn ksr-btn-primary w-full">
-              Pledge US$ {formatAmount(reward.amount)}
+              {reward.cta ?? `Purchase $${formatAmount(reward.amount)}`}
             </button>
           </div>
         </div>

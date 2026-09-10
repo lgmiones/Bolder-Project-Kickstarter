@@ -12,6 +12,9 @@ export default function RewardsIndex() {
           {rewards.map((reward) => (
             <li key={reward.id}>
               <Link href={`#reward-${reward.id}`} className="group block">
+                <p className="text-[11px] font-bold uppercase tracking-wide text-ksr-text-soft">
+                  Tier {reward.tier}
+                </p>
                 <p className="text-[15px] font-bold uppercase leading-snug tracking-tight group-hover:underline">
                   {reward.title}
                 </p>

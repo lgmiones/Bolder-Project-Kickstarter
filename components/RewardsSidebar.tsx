@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { formatAmount, rewards, type Reward } from "@/lib/rewards";
+import {
+  formatAmount,
+  formatAvailable,
+  rewards,
+  type Reward,
+} from "@/lib/rewards";
 
 function SidebarReward({ reward }: { reward: Reward }) {
   /** Both buttons jump to this tier's row on the Rewards tab. */
@@ -8,9 +13,14 @@ function SidebarReward({ reward }: { reward: Reward }) {
   return (
     <div className="rounded-[4px] border border-ksr-border-soft p-5">
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-[17px] font-bold uppercase leading-snug tracking-tight">
-          {reward.title}
-        </h3>
+        <div>
+          <p className="text-[12px] font-bold uppercase tracking-wide text-ksr-text-soft">
+            Tier {reward.tier}
+          </p>
+          <h3 className="mt-1 text-[17px] font-bold uppercase leading-snug tracking-tight">
+            {reward.title}
+          </h3>
+        </div>
         <p className="shrink-0 text-[17px] font-bold">
           ${formatAmount(reward.amount)}
         </p>
@@ -22,19 +32,17 @@ function SidebarReward({ reward }: { reward: Reward }) {
 
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
-          <p className="text-[12px] text-ksr-text-soft">Backers</p>
-          <p className="text-[14px] font-medium">{reward.backers}</p>
+          <p className="text-[12px] text-ksr-text-soft">Total value</p>
+          <p className="text-[14px] font-medium">
+            ${formatAmount(reward.totalValue)}
+          </p>
         </div>
         <div>
-          <p className="text-[12px] text-ksr-text-soft">Estimated delivery</p>
-          <p className="text-[14px] font-medium">{reward.estimatedDelivery}</p>
+          <p className="text-[12px] text-ksr-text-soft">Available</p>
+          <p className="text-[14px] font-medium">
+            {formatAvailable(reward.available)}
+          </p>
         </div>
-        {reward.shipsTo && (
-          <div className="col-span-2">
-            <p className="text-[12px] text-ksr-text-soft">Ships to</p>
-            <p className="text-[14px] font-medium">{reward.shipsTo}</p>
-          </div>
-        )}
       </div>
 
       <div className="mt-4">
@@ -60,7 +68,7 @@ function SidebarReward({ reward }: { reward: Reward }) {
           href={href}
           className="ksr-btn ksr-btn-primary w-full py-2 text-center text-[14px] sm:flex-1"
         >
-          Pledge US$ {formatAmount(reward.amount)}
+          {reward.cta ?? `Purchase $${formatAmount(reward.amount)}`}
         </Link>
       </div>
     </div>

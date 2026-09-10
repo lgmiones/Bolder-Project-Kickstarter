@@ -1,6 +1,7 @@
 import HashScroll from "@/components/HashScroll";
 import RewardRow from "@/components/RewardRow";
 import RewardsIndex from "@/components/RewardsIndex";
+import SponsorshipCard from "@/components/SponsorshipCard";
 import { rewards } from "@/lib/rewards";
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default function RewardsPage() {
           {rewards.map((reward) => (
             <RewardRow key={reward.id} reward={reward} />
           ))}
+          <SponsorshipCard />
         </div>
       </div>
     </div>

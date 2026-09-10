@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { formatAmount, formatAvailable, type Reward } from "@/lib/rewards";
 import { BoxIcon, ChevronDownIcon, TagIcon, UsersIcon } from "./Icons";
+import PurchaseAction from "./PurchaseAction";
 
 function MetaRow({
   icon,
@@ -95,9 +96,7 @@ export default function RewardRow({ reward }: { reward: Reward }) {
           </div>
 
           <div className="px-5 pb-5">
-            <button type="button" className="ksr-btn ksr-btn-primary w-full">
-              {reward.cta ?? `Purchase $${formatAmount(reward.amount)}`}
-            </button>
+            <PurchaseAction reward={reward} className="w-full" />
           </div>
         </div>
       </div>

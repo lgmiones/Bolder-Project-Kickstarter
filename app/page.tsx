@@ -1,101 +1,268 @@
+import Link from "next/link";
 import RewardsSidebar from "@/components/RewardsSidebar";
-import { ChevronRightIcon } from "@/components/Icons";
 
 /**
- * Campaign tab.
- * All prose below is placeholder copy — replace the strings with the real
- * campaign story. Image slots are marked with the .ksr-placeholder class.
+ * Story tab — copy from Paul's "Story DRAFT V2".
+ *
+ * Image slots are `.ksr-placeholder` blocks labelled with what Paul and Jezam
+ * asked for, so each can be swapped for <Image> as the photos arrive.
  */
 
-const STORY_PARAGRAPHS = [
-  "Placeholder paragraph. Replace this text with the opening of the campaign story — the hook that explains what the project is and why it exists.",
-  "Placeholder paragraph. This second block is where the background and origin of the project goes: how it started, who noticed it first, and what happened next.",
-  "Placeholder paragraph. Use this block to describe the work itself — the shape of the show, the tone, and what an audience can expect from it.",
+const OPENING_LINES = [
+  "I grew up chasing thrills at theme parks.",
+  "Roller coasters. Water slides. Big drops. Big laughs.",
+  "About a decade ago, I found a new kind of adventure in the mountains.",
+  "Cliffs. Zip lines. Mountain air.",
+  "Most kids in our city won't see that any time soon.",
+  "They see roads, parking lots, and screens.",
+  "Bolder exists to bring that “mountain feeling” to them, right here at home.",
 ];
 
-const TEAM_PARAGRAPHS = [
-  "Placeholder paragraph. Introduce the writers and creators here, with a sentence or two on each.",
-  "Placeholder paragraph. Add the producing team, collaborators, and any partners attached to the project.",
+const CAMPAIGN_POINTS = [
+  "You get an incredible deal on visits, birthday parties, memberships, or private events.",
+  "For every tier, you also help send kids from local Title 1 schools to Bolder through our Give the Gift of Adventure Passes.",
+  "Everyone who participates gets access to our behind-the-scenes data, insights, and business updates so you can see exactly how your support helps.",
 ];
 
-const WHY_PARAGRAPHS = [
-  "Placeholder paragraph. Explain why the campaign is running now and what the funds unlock.",
-  "Placeholder paragraph. Close with the ask, and what backers make possible.",
+const STEPS = [
+  {
+    lead: "Pick a tier",
+    rest: "that fits your family, your company, or your budget.",
+  },
+  {
+    lead: "Get your rewards:",
+    rest: "passes, memberships, parties, shirts, and more, exactly as listed.",
+  },
+  {
+    lead: "Send kids to Bolder:",
+    rest: "every tier includes Give the Gift of Adventure Passes donated to Title 1 Schools for their students.",
+  },
+  {
+    lead: "Follow the journey:",
+    rest: "every supporter gets access to behind-the-scenes data, insights, and business updates as we work to turn Bolder into a healthy, long-term business.",
+  },
 ];
 
-function SectionBanner({ label }: { label: string }) {
-  return <div className="ksr-placeholder my-8 aspect-[16/7] w-full">{label}</div>;
+const FAQS = [
+  {
+    q: "When do passes and memberships expire?",
+    bullets: [
+      "Any item labelled “never expires” truly never expires.",
+      "Base Camp and All Access memberships in Tiers 4 and 5 include unlimited visits for the remainder of 2026 and the full 2027 calendar year, as listed on each reward.",
+      "Birthday parties and party packages are valid anytime during 2026–2027, exactly as described on each tier.",
+    ],
+  },
+  {
+    q: "How do the Give the Gift of Adventure Passes work?",
+    a: "For each pass included in your tier, we donate admission passes through local schools to kids that might not otherwise be able to come to Bolder on their own. Our team will coordinate with Title 1 school partners and share updates in the behind-the-scenes reports you receive.",
+  },
+  {
+    q: "Does every tier include behind-the-scenes updates?",
+    a: "Yes. Every single tier includes access to behind-the-scenes data, insights, and business updates so you can see how this campaign impacts Bolder.",
+  },
+];
+
+function Placeholder({
+  label,
+  aspect = "aspect-[16/7]",
+}: {
+  label: string;
+  aspect?: string;
+}) {
+  return (
+    <div className={`ksr-placeholder w-full px-4 text-center ${aspect}`}>
+      {label}
+    </div>
+  );
 }
 
-export default function CampaignPage() {
+export default function StoryPage() {
   return (
-    <>
-      <div className="mx-auto max-w-[1240px] px-4 py-10">
-        <div className="grid grid-cols-12 gap-x-10 gap-y-10">
-          {/* Story column */}
-          <div className="col-span-12 lg:col-span-8">
-            <SectionBanner label="Hero image — what is The Pyramid?" />
+    <div className="mx-auto max-w-[1240px] px-4 py-10">
+      <div className="grid grid-cols-12 gap-x-10 gap-y-10">
+        <div className="col-span-12 lg:col-span-8">
+          {/* Sales video, recorded separately */}
+          <Placeholder label="VSL video — Paul recording" aspect="aspect-video" />
 
-            {STORY_PARAGRAPHS.map((p, i) => (
-              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
-                {p}
-              </p>
-            ))}
+          {/* SECTION 1 — Scaling Bolder */}
+          <section className="mt-10">
+            <Placeholder
+              label="Section graphic: Scaling Bolder — Jezam"
+              aspect="aspect-[16/6]"
+            />
 
-            <SectionBanner label="Story image" />
+            <h1 className="mt-8 text-[30px] font-bold leading-tight md:text-[36px]">
+              Help us Scale Bolder and Make Memories Together
+            </h1>
+            <p className="mt-4 text-[17px] leading-[1.7]">
+              For a limited time, you can grab discounted passes, memberships,
+              and once-in-a-lifetime experiences at Bolder Adventure Park — while
+              also sending kids from local Title 1 Schools on their very first
+              Bolder adventure.
+            </p>
 
-            <h2 className="mb-4 mt-10 text-[22px] font-bold">Our Story</h2>
-            {TEAM_PARAGRAPHS.map((p, i) => (
-              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
-                {p}
-              </p>
-            ))}
+            <Link href="/rewards" className="ksr-btn ksr-btn-primary mt-6">
+              Choose Your Adventure Tier
+            </Link>
 
-            <SectionBanner label="Team photo" />
+            <div className="mt-8">
+              <Placeholder label="Hero photo — park front entrance, grand view" />
+            </div>
+          </section>
 
-            <h2 className="mb-4 mt-10 text-[22px] font-bold">
-              The Team Bringing The Pyramid To Life
-            </h2>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="ksr-placeholder aspect-square w-full text-[10px]">
-                  Headshot {i + 1}
-                </div>
+          {/* SECTION 2 — Bolder's story */}
+          <section className="mt-14">
+            <h2 className="text-[24px] font-bold">Why Bolder Exists</h2>
+
+            <div className="mt-5 text-[17px] leading-[1.8]">
+              {OPENING_LINES.map((line) => (
+                <p key={line}>{line}</p>
               ))}
             </div>
 
-            <h2 className="mb-4 mt-10 text-[22px] font-bold">Why Kickstarter</h2>
-            {WHY_PARAGRAPHS.map((p, i) => (
-              <p key={i} className="mb-5 text-[16px] leading-[1.7]">
-                {p}
-              </p>
-            ))}
+            <p className="mt-6 text-[17px] leading-[1.8]">
+              Thousands of families have shown up, and experiences and memories
+              have been made for the past 4 years. We even partnered with famous
+              YouTubers (more on that coming soon). I&rsquo;ve made plenty of
+              mistakes on the business side that you&rsquo;ll see on the show,
+              but that&rsquo;s all a part of the journey of being an
+              entrepreneur. As Alex says, you don&rsquo;t lose if you don&rsquo;t
+              quit. The honest truth: Bolder is an amazing experience for
+              families, but the business has been on the edge. Cash has been
+              tight. I&rsquo;ve had nights staring at the ceiling wondering if we
+              were going to make it.
+            </p>
 
-            <h2 className="mb-4 mt-10 text-[22px] font-bold">Rewards</h2>
-            <SectionBanner label="Rewards graphic" />
-            <a
-              href="/rewards"
-              className="inline-flex items-center gap-1 text-[15px] font-medium text-ksr-green hover:underline"
-            >
-              See all rewards
-              <ChevronRightIcon width={14} height={14} />
-            </a>
+            <p className="mt-5 text-[17px] leading-[1.8]">
+              Enter Alex Hormozi. I started following Alex as a business man
+              about a year ago. I sent in a selfie video applying to be on a new
+              show he was launching called Scale or Fail. On the show with Alex
+              Hormozi you will see me at our lowest point. I cried in the diary
+              room, and Alex called our business a mess. It was the most
+              embarrassing moment of my career, but it was also a turning point.
+              Alex and his team gave us clear advice and a plan. Our leaders,
+              staff, and partners have spent the last 90 days doing the hard work
+              to follow that plan. This campaign, and the rewards on this page,
+              are part of that work to make Bolder stronger for years to come.
+              It&rsquo;s been a life changing experience already, and I look
+              forward to seeing what the future holds as we try to Scale Bolder.
+              This page is your chance to be part of that story.
+            </p>
 
-            <div id="risks" className="mt-14 border-t border-ksr-border-soft pt-8">
-              <h2 className="mb-3 text-[18px] font-bold">Risks and challenges</h2>
-              <p className="text-[16px] leading-[1.7]">
-                Placeholder paragraph. Replace with the risks and challenges
-                statement for the project.
-              </p>
+            <p className="mt-5 text-[17px] leading-[1.8]">
+              So we built a simple campaign:
+            </p>
+            <ul className="mt-3 list-disc space-y-2 pl-6 text-[17px] leading-[1.8] marker:text-ksr-green">
+              {CAMPAIGN_POINTS.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+
+            <p className="mt-5 text-[17px] leading-[1.8]">
+              We could use your help, and we can have fun together while we scale
+              it. We scale the business, and you scale our mountains. What do you
+              say? I&rsquo;d be honored if you&rsquo;d pick a tier below and join
+              us.
+            </p>
+            <p className="mt-5 text-[17px] leading-[1.8]">
+              Thank you for giving us a shot.
+            </p>
+            <p className="mt-4 text-[17px] font-bold">— Paul</p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <Placeholder
+                label="Construction — building the mountain (video screenshot)"
+                aspect="aspect-[4/3]"
+              />
+              <Placeholder
+                label="Collage — Hailey, Ethan and Shay helping with marketing photos"
+                aspect="aspect-[4/3]"
+              />
             </div>
-          </div>
+            <p className="mt-2 text-[13px] text-ksr-text-soft">
+              Captions to be set on the images themselves.
+            </p>
+          </section>
 
-          {/* Sidebar */}
-          <aside className="col-span-12 lg:col-span-4">
-            <RewardsSidebar />
-          </aside>
+          {/* SECTION 3 — How the campaign works */}
+          <section className="mt-14">
+            <h2 className="text-[24px] font-bold">How Your Support Works</h2>
+            <ol className="mt-5 space-y-4">
+              {STEPS.map((step, i) => (
+                <li key={step.lead} className="flex gap-4">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ksr-green text-[13px] font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <p className="text-[17px] leading-[1.7]">
+                    <strong>{step.lead}</strong> {step.rest}
+                  </p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 border-l-2 border-ksr-green pl-4 text-[17px] font-medium leading-[1.7]">
+              Quantities are limited for each tier. Once a tier sells out, it is
+              gone.
+            </p>
+          </section>
+
+          {/* SECTION 4 — Proof */}
+          <section className="mt-14">
+            <h2 className="text-[24px] font-bold">What Families Say</h2>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <Placeholder
+                label="Google review screenshot — Jezam"
+                aspect="aspect-[4/3]"
+              />
+              <Placeholder
+                label="Google review screenshot — Jezam"
+                aspect="aspect-[4/3]"
+              />
+            </div>
+          </section>
+
+          {/* SECTION 5 — Reward tiers overview */}
+          <section className="mt-14">
+            <h2 className="text-[24px] font-bold">Choose Your Adventure Tier</h2>
+            <div className="mt-5">
+              <Placeholder
+                label="Rewards tier graphic — Jezam"
+                aspect="aspect-[16/10]"
+              />
+            </div>
+            <Link href="/rewards" className="ksr-btn ksr-btn-primary mt-6">
+              See All Tiers
+            </Link>
+          </section>
+
+          {/* SECTION 6 — FAQ */}
+          <section className="mt-14 border-t border-ksr-border-soft pt-10">
+            <h2 className="text-[24px] font-bold">Common Questions</h2>
+            <dl className="mt-6 space-y-7">
+              {FAQS.map((faq) => (
+                <div key={faq.q}>
+                  <dt className="text-[17px] font-bold">{faq.q}</dt>
+                  {faq.a && (
+                    <dd className="mt-2 text-[17px] leading-[1.8]">{faq.a}</dd>
+                  )}
+                  {faq.bullets && (
+                    <dd className="mt-2">
+                      <ul className="list-disc space-y-2 pl-6 text-[17px] leading-[1.8] marker:text-ksr-text-soft">
+                        {faq.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </dd>
+                  )}
+                </div>
+              ))}
+            </dl>
+          </section>
         </div>
+
+        <aside className="col-span-12 lg:col-span-4">
+          <RewardsSidebar />
+        </aside>
       </div>
-    </>
+    </div>
   );
 }

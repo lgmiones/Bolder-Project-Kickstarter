@@ -96,16 +96,40 @@ Defined as CSS variables in `app/globals.css`:
 | `--color-ksr-border`  | `#d1d1d1` | inputs, secondary button |
 | `--color-ksr-footer`  | `#171717` | footer background        |
 
+## Analytics
+
+Google Analytics 4 is wired up through `@next/third-parties`, the integration
+Next.js ships for this. The tag lives in `app/layout.tsx` and reads a single
+environment variable:
+
+| Variable            | Example        | Notes                          |
+| ------------------- | -------------- | ------------------------------ |
+| `NEXT_PUBLIC_GA_ID` | `G-XXXXXXXXXX` | GA4 measurement ID; optional   |
+
+When the variable is unset, **no tag is rendered at all** — local and preview
+builds stay out of the analytics property. Set it to switch tracking on.
+
+Locally, copy the template and fill it in:
+
+```bash
+cp .env.example .env.local
+```
+
+On Vercel, add `NEXT_PUBLIC_GA_ID` under **Project Settings → Environment
+Variables** and redeploy. It is a `NEXT_PUBLIC_` variable, so it is inlined at
+build time and a redeploy is required for a change to take effect.
+
 ## Deploying to Vercel
 
-The project needs no environment variables and no extra configuration — Vercel
-detects Next.js and infers the build settings.
+Vercel detects Next.js and infers the build settings; the only configuration is
+the optional analytics variable above.
 
 1. Push this repository to GitHub.
 2. In Vercel, **Add New → Project** and import the repository.
 3. Framework preset resolves to **Next.js**; leave build command
    (`next build`) and output directory at their defaults.
-4. **Deploy.**
+4. Add `NEXT_PUBLIC_GA_ID` if you want analytics on this deployment.
+5. **Deploy.**
 
 Every push to the default branch then ships to production, and pull requests get
 their own preview URLs.

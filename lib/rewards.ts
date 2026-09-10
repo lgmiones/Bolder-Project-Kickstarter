@@ -20,6 +20,12 @@ export type Reward = {
   items: string[];
   /** Overrides the default "Purchase" call to action. */
   cta?: string;
+  /**
+   * Point-of-sale checkout link for this tier, from Paul.
+   * UTM parameters are appended automatically — store the bare URL here.
+   * Until one is set, the button renders without a destination.
+   */
+  purchaseUrl?: string;
 };
 
 const BEHIND_THE_SCENES =

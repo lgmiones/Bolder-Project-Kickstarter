@@ -5,6 +5,7 @@ import {
   rewards,
   type Reward,
 } from "@/lib/rewards";
+import PurchaseAction from "./PurchaseAction";
 
 function SidebarReward({ reward }: { reward: Reward }) {
   /** Both buttons jump to this tier's row on the Rewards tab. */
@@ -64,12 +65,11 @@ function SidebarReward({ reward }: { reward: Reward }) {
         >
           Details
         </Link>
-        <Link
-          href={href}
-          className="ksr-btn ksr-btn-primary w-full py-2 text-center text-[14px] sm:flex-1"
-        >
-          {reward.cta ?? `Purchase $${formatAmount(reward.amount)}`}
-        </Link>
+        <PurchaseAction
+          reward={reward}
+          fallbackHref={href}
+          className="w-full py-2 text-center text-[14px] sm:flex-1"
+        />
       </div>
     </div>
   );

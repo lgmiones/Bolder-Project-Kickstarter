@@ -98,38 +98,53 @@ Defined as CSS variables in `app/globals.css`:
 
 ## Analytics
 
-Google Analytics 4 is wired up through `@next/third-parties`, the integration
-Next.js ships for this. The tag lives in `app/layout.tsx` and reads a single
-environment variable:
+**Google Tag Manager only.** GA4 is configured inside Shoab's GTM container, so
+loading GTM is all that is needed. There is deliberately **no separate GA4 tag**
+— adding one would double count every pageview.
 
-| Variable            | Example        | Notes                          |
-| ------------------- | -------------- | ------------------------------ |
-| `NEXT_PUBLIC_GA_ID` | `G-XXXXXXXXXX` | GA4 measurement ID; optional   |
+The tag lives in `app/layout.tsx` via `@next/third-parties`, plus a hand-written
+`<noscript>` fallback (the component does not emit one).
 
-When the variable is unset, **no tag is rendered at all** — local and preview
-builds stay out of the analytics property. Set it to switch tracking on.
+| Variable             | Default        | Notes                              |
+| -------------------- | -------------- | ---------------------------------- |
+| `NEXT_PUBLIC_GTM_ID` | `GTM-P3H64KXM` | Set to `off` or empty to disable    |
 
-Locally, copy the template and fill it in:
+The default is baked in, so GTM is live without any Vercel configuration.
 
-```bash
-cp .env.example .env.local
-```
+### Turning GTM off
 
-On Vercel, add `NEXT_PUBLIC_GA_ID` under **Project Settings → Environment
-Variables** and redeploy. It is a `NEXT_PUBLIC_` variable, so it is inlined at
-build time and a redeploy is required for a change to take effect.
+**When this page moves under `bolderadventurepark.com`, GTM must be switched
+off** — the main site loads its own container, and two copies would double
+count. Set `NEXT_PUBLIC_GTM_ID` to `off` in Vercel and redeploy. It is a
+`NEXT_PUBLIC_` variable, inlined at build time, so a redeploy is required.
+
+### Tier click tracking
+
+Every Purchase button pushes a `tier_click` event to the dataLayer via
+`sendGTMEvent`, carrying `tier` (`tier-1`…`tier-7`), `tier_name`, and
+`tier_price` as a number. Shoab picks this up in GTM and forwards it to GA4, so
+there is no GA4 work in this codebase.
+
+### UTM tags
+
+Separate from the above, and for a different purpose: `lib/utm.ts` appends
+campaign UTM parameters to outbound purchase links. Those are read by analytics
+at the **destination** (Roller) to attribute the visit, whereas GTM measures
+behaviour **on** this page.
 
 ## Deploying to Vercel
 
-Vercel detects Next.js and infers the build settings; the only configuration is
-the optional analytics variable above.
+Vercel detects Next.js and infers the build settings. No environment variables
+are required — GTM is live on its baked-in default.
 
 1. Push this repository to GitHub.
 2. In Vercel, **Add New → Project** and import the repository.
 3. Framework preset resolves to **Next.js**; leave build command
    (`next build`) and output directory at their defaults.
-4. Add `NEXT_PUBLIC_GA_ID` if you want analytics on this deployment.
-5. **Deploy.**
+4. **Deploy.**
+
+Set `NEXT_PUBLIC_GTM_ID` only when you need to override or disable the
+container — see [Analytics](#analytics).
 
 Every push to the default branch then ships to production, and pull requests get
 their own preview URLs.

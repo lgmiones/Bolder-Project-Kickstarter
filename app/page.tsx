@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { YouTubeEmbed } from "@next/third-parties/google";
 import RewardsSidebar from "@/components/RewardsSidebar";
 import StoryImage from "@/components/StoryImage";
+
+/**
+ * Paul's VSL. This is the unedited cut — the editing team's version replaces it
+ * shortly, which is a one-line change: swap the ID from the YouTube URL
+ * (youtu.be/<id> or watch?v=<id>).
+ */
+const VSL_VIDEO_ID = "PzOVOUVDC18";
 
 /**
  * Story tab — copy from Paul's "Story DRAFT V2".
@@ -63,27 +71,18 @@ const FAQS = [
   },
 ];
 
-function Placeholder({
-  label,
-  aspect = "aspect-[16/7]",
-}: {
-  label: string;
-  aspect?: string;
-}) {
-  return (
-    <div className={`ksr-placeholder w-full px-4 text-center ${aspect}`}>
-      {label}
-    </div>
-  );
-}
-
 export default function StoryPage() {
   return (
     <div className="mx-auto max-w-[1240px] px-4 py-10">
       <div className="grid grid-cols-12 gap-x-10 gap-y-10">
         <div className="col-span-12 lg:col-span-8">
           {/* Sales video, recorded separately */}
-          <Placeholder label="VSL video — Paul recording" aspect="aspect-video" />
+          <YouTubeEmbed
+            videoid={VSL_VIDEO_ID}
+            params="rel=0"
+            playlabel="Play: Help us Scale Bolder"
+            style="max-width: 100%; border-radius: 4px; overflow: hidden;"
+          />
 
           {/* SECTION 1 — Scaling Bolder */}
           <section className="mt-10">

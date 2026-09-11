@@ -36,7 +36,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    // data-scroll-behavior marks the smooth scrolling in globals.css as
+    // intentional, so Next does not warn about it on route transitions.
+    <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
       {gtmEnabled && <GoogleTagManager gtmId={GTM_ID} />}
       <body className="antialiased">
         {/* The GoogleTagManager component injects gtm.js but emits no noscript

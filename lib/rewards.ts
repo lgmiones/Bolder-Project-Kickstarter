@@ -166,9 +166,9 @@ export const rewards: Reward[] = [
     title: "Group Outings",
     amount: 10000,
     totalValue: 20760,
-    // Paul's sheet listed a lead form here rather than a quantity, but Kyle
-    // supplied a real checkout page, so this behaves like the other tiers.
-    // No published quantity yet, so the Available row is omitted.
+    cta: "Request Information",
+    // Paul's sheet listed a lead form rather than a quantity, so the Available
+    // row is omitted until there is a published figure.
     description:
       "Built for businesses, churches, schools, and other large groups — a $15,000 event budget for $10,000.",
     items: [

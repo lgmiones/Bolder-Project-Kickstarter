@@ -56,11 +56,13 @@ export default function RewardRow({ reward }: { reward: Reward }) {
                 label="Total value"
                 value={`$${formatAmount(reward.totalValue)}`}
               />
-              <MetaRow
-                icon={<UsersIcon width={14} height={14} />}
-                label="Available"
-                value={formatAvailable(reward.available)}
-              />
+              {reward.available !== undefined && (
+                <MetaRow
+                  icon={<UsersIcon width={14} height={14} />}
+                  label="Available"
+                  value={formatAvailable(reward.available)}
+                />
+              )}
             </div>
 
             <div className="mt-4">

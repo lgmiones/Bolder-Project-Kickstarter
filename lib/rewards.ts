@@ -14,8 +14,11 @@ export type Reward = {
   amount: number;
   /** Stated total value of everything included, in USD. */
   totalValue: number;
-  /** Units available, or a label where the sheet gives one instead of a count. */
-  available: number | string;
+  /**
+   * Units available. Omit it when there is no published figure — the row is
+   * hidden rather than showing a placeholder.
+   */
+  available?: number | string;
   description: string;
   items: string[];
   /** Overrides the default "Purchase" call to action. */
@@ -37,6 +40,8 @@ const giftPasses = (n: number) =>
 export const rewards: Reward[] = [
   {
     id: "help-and-give",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2081700",
     tier: 1,
     title: "Help and Give an Experience",
     amount: 25,
@@ -48,6 +53,8 @@ export const rewards: Reward[] = [
   },
   {
     id: "experience-bolder",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082060",
     tier: 2,
     title: "Experience Bolder",
     amount: 35,
@@ -65,6 +72,8 @@ export const rewards: Reward[] = [
   },
   {
     id: "vip-for-a-day",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082087",
     tier: 3,
     title: "VIP for a Day",
     amount: 89,
@@ -85,6 +94,8 @@ export const rewards: Reward[] = [
   },
   {
     id: "base-camp-family",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082095",
     tier: 4,
     title: "Base Camp Family Membership & Party",
     amount: 399,
@@ -103,6 +114,8 @@ export const rewards: Reward[] = [
   },
   {
     id: "all-access-private-party",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082103",
     tier: 5,
     title: "All Access Private Party & Family Membership",
     amount: 2000,
@@ -124,6 +137,8 @@ export const rewards: Reward[] = [
   },
   {
     id: "lifetime-vip-family",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082111",
     tier: 6,
     title: "Lifetime VIP Family Pass",
     amount: 5000,
@@ -145,12 +160,15 @@ export const rewards: Reward[] = [
   },
   {
     id: "group-outings",
+    purchaseUrl:
+      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082119",
     tier: 7,
     title: "Group Outings",
     amount: 10000,
     totalValue: 20760,
-    available: "Lead form",
-    cta: "Request Information",
+    // Paul's sheet listed a lead form here rather than a quantity, but Kyle
+    // supplied a real checkout page, so this behaves like the other tiers.
+    // No published quantity yet, so the Available row is omitted.
     description:
       "Built for businesses, churches, schools, and other large groups — a $15,000 event budget for $10,000.",
     items: [

@@ -38,12 +38,14 @@ function SidebarReward({ reward }: { reward: Reward }) {
             ${formatAmount(reward.totalValue)}
           </p>
         </div>
-        <div>
-          <p className="text-[12px] text-ksr-text-soft">Available</p>
-          <p className="text-[14px] font-medium">
-            {formatAvailable(reward.available)}
-          </p>
-        </div>
+        {reward.available !== undefined && (
+          <div>
+            <p className="text-[12px] text-ksr-text-soft">Available</p>
+            <p className="text-[14px] font-medium">
+              {formatAvailable(reward.available)}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="mt-4">

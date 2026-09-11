@@ -1,5 +1,6 @@
 import Link from "next/link";
 import RewardsSidebar from "@/components/RewardsSidebar";
+import StoryImage from "@/components/StoryImage";
 
 /**
  * Story tab — copy from Paul's "Story DRAFT V2".
@@ -86,9 +87,12 @@ export default function StoryPage() {
 
           {/* SECTION 1 — Scaling Bolder */}
           <section className="mt-10">
-            <Placeholder
-              label="Section graphic: Scaling Bolder — Jezam"
-              aspect="aspect-[16/6]"
+            <StoryImage
+              src="/story-contents/section-scaling-bolder.jpg"
+              alt="Scaling Bolder"
+              width={1920}
+              height={1080}
+              priority
             />
 
             <h1 className="mt-8 text-[30px] font-bold leading-tight md:text-[36px]">
@@ -106,7 +110,12 @@ export default function StoryPage() {
             </Link>
 
             <div className="mt-8">
-              <Placeholder label="Hero photo — park front entrance, grand view" />
+              <StoryImage
+                src="/story-contents/hero-park-entrance.jpg"
+                alt="The front entrance of Bolder Adventure Park"
+                width={1920}
+                height={1080}
+              />
             </div>
           </section>
 
@@ -169,19 +178,22 @@ export default function StoryPage() {
             </p>
             <p className="mt-4 text-[17px] font-bold">— Paul</p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <Placeholder
-                label="Construction — building the mountain (video screenshot)"
-                aspect="aspect-[4/3]"
+            {/* Full width rather than side by side: both carry captions baked
+                into the artwork, which would be unreadable at half width. */}
+            <div className="mt-8 flex flex-col gap-4">
+              <StoryImage
+                src="/story-contents/construction.jpg"
+                alt="Building the mountain during construction"
+                width={1920}
+                height={1080}
               />
-              <Placeholder
-                label="Collage — Hailey, Ethan and Shay helping with marketing photos"
-                aspect="aspect-[4/3]"
+              <StoryImage
+                src="/story-contents/collage.jpg"
+                alt="Hailey, Ethan and Shay helping with marketing photos"
+                width={1920}
+                height={1080}
               />
             </div>
-            <p className="mt-2 text-[13px] text-ksr-text-soft">
-              Captions to be set on the images themselves.
-            </p>
           </section>
 
           {/* SECTION 3 — How the campaign works */}
@@ -208,14 +220,21 @@ export default function StoryPage() {
           {/* SECTION 4 — Proof */}
           <section className="mt-14">
             <h2 className="text-[24px] font-bold">What Families Say</h2>
+            {/* Square sources, kept square so no review text is cropped. */}
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <Placeholder
-                label="Google review screenshot — Jezam"
-                aspect="aspect-[4/3]"
+              <StoryImage
+                src="/story-contents/review-1.jpg"
+                alt="A five-star Google review from a Bolder visitor"
+                width={1080}
+                height={1080}
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 388px"
               />
-              <Placeholder
-                label="Google review screenshot — Jezam"
-                aspect="aspect-[4/3]"
+              <StoryImage
+                src="/story-contents/review-2.jpg"
+                alt="A five-star Google review from a Bolder visitor"
+                width={1080}
+                height={1080}
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 388px"
               />
             </div>
           </section>
@@ -223,10 +242,14 @@ export default function StoryPage() {
           {/* SECTION 5 — Reward tiers overview */}
           <section className="mt-14">
             <h2 className="text-[24px] font-bold">Choose Your Adventure Tier</h2>
+            {/* A tall infographic (1920x8150). Rendered at its natural ratio —
+                any fixed aspect would crop it to an unreadable sliver. */}
             <div className="mt-5">
-              <Placeholder
-                label="Rewards tier graphic — Jezam"
-                aspect="aspect-[16/10]"
+              <StoryImage
+                src="/story-contents/tier-list.jpg"
+                alt="All seven reward tiers and what each one includes"
+                width={1920}
+                height={8150}
               />
             </div>
             <Link href="/rewards" className="ksr-btn ksr-btn-primary mt-6">

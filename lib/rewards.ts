@@ -160,8 +160,9 @@ export const rewards: Reward[] = [
   },
   {
     id: "group-outings",
-    purchaseUrl:
-      "https://ecom.roller.app/bolderadventurepark/memberships/en-us/product/2082119",
+    // Kai's enquiry form rather than the Roller checkout — this tier is a lead
+    // form, so "Request Information" now goes somewhere that matches the label.
+    purchaseUrl: "https://bolderadventurepark.com/group-outtings-scale-or-fail",
     tier: 7,
     title: "Group Outings",
     amount: 10000,

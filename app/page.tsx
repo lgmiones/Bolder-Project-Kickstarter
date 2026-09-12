@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { YouTubeEmbed } from "@next/third-parties/google";
 import RewardsSidebar from "@/components/RewardsSidebar";
 import StoryImage from "@/components/StoryImage";
+import WistiaPlayer from "@/components/WistiaPlayer";
 
 /**
- * Paul's VSL. This is the unedited cut — the editing team's version replaces it
- * shortly, which is a one-line change: swap the ID from the YouTube URL
- * (youtu.be/<id> or watch?v=<id>).
+ * Paul's VSL, hosted on Wistia at Kai's request (previously YouTube).
+ * Swapping in a new cut is a one-line change: replace this media ID.
  */
-const VSL_VIDEO_ID = "PzOVOUVDC18";
+const VSL_MEDIA_ID = "e1zu52g0hx";
 
 /**
  * Story tab — copy from Paul's "Story DRAFT V2".
@@ -77,11 +76,9 @@ export default function StoryPage() {
       <div className="grid grid-cols-12 gap-x-10 gap-y-10">
         <div className="col-span-12 lg:col-span-8">
           {/* Sales video, recorded separately */}
-          <YouTubeEmbed
-            videoid={VSL_VIDEO_ID}
-            params="rel=0"
-            playlabel="Play: Help us Scale Bolder"
-            style="max-width: 100%; border-radius: 4px; overflow: hidden;"
+          <WistiaPlayer
+            mediaId={VSL_MEDIA_ID}
+            className="overflow-hidden rounded-[4px]"
           />
 
           {/* SECTION 1 — Scaling Bolder */}

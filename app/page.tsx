@@ -73,8 +73,8 @@ const FAQS = [
 export default function StoryPage() {
   return (
     <div className="mx-auto max-w-[1240px] px-4 py-10">
-      <div className="grid grid-cols-12 gap-x-10 gap-y-10">
-        <div className="col-span-12 lg:col-span-8">
+      <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+        <div className="min-w-0 lg:col-span-8">
           {/* Sales video, recorded separately */}
           <WistiaPlayer
             mediaId={VSL_MEDIA_ID}
@@ -278,7 +278,7 @@ export default function StoryPage() {
           </section>
         </div>
 
-        <aside className="col-span-12 lg:col-span-4">
+        <aside className="min-w-0 lg:col-span-4">
           <RewardsSidebar />
         </aside>
       </div>

@@ -34,10 +34,10 @@ export default function RewardRow({ reward }: { reward: Reward }) {
   return (
     <article
       id={`reward-${reward.id}`}
-      className="grid scroll-mt-24 grid-cols-12 gap-x-8 gap-y-6 border-b border-ksr-border-soft pb-10 last:border-b-0"
+      className="grid scroll-mt-24 grid-cols-1 gap-y-6 lg:grid-cols-12 lg:gap-x-8 border-b border-ksr-border-soft pb-10 last:border-b-0"
     >
       {/* Pledge card */}
-      <div className="col-span-12 lg:col-span-5">
+      <div className="min-w-0 lg:col-span-5">
         <div className="overflow-hidden rounded-[4px] border border-ksr-green bg-white lg:sticky lg:top-24">
           <div className="p-5">
             <p className="text-[12px] font-bold uppercase tracking-wide text-ksr-text-soft">
@@ -104,7 +104,7 @@ export default function RewardRow({ reward }: { reward: Reward }) {
       </div>
 
       {/* Details panel */}
-      <aside className="col-span-12 hidden lg:col-span-7 lg:block">
+      <aside className="hidden min-w-0 lg:col-span-7 lg:block">
         <RewardDetails reward={reward} />
       </aside>
     </article>

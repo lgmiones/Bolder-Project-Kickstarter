@@ -3,6 +3,16 @@ import RewardsSidebar from "@/components/RewardsSidebar";
 import StoryImage from "@/components/StoryImage";
 import WistiaPlayer from "@/components/WistiaPlayer";
 
+// Static imports: Next fingerprints the file contents into each URL, so a
+// replaced image is never served from a stale optimizer cache.
+import sectionScalingBolder from "@/public/story-contents/section-scaling-bolder.jpg";
+import heroParkEntrance from "@/public/story-contents/hero-park-entrance.jpg";
+import construction from "@/public/story-contents/construction.jpg";
+import collage from "@/public/story-contents/collage.jpg";
+import review1 from "@/public/story-contents/review-1.jpg";
+import review2 from "@/public/story-contents/review-2.jpg";
+import tierList from "@/public/story-contents/tier-list.jpg";
+
 /**
  * Paul's VSL, hosted on Wistia at Kai's request (previously YouTube).
  * Swapping in a new cut is a one-line change: replace this media ID.
@@ -10,10 +20,11 @@ import WistiaPlayer from "@/components/WistiaPlayer";
 const VSL_MEDIA_ID = "e1zu52g0hx";
 
 /**
- * Story tab — copy from Paul's "Story DRAFT V2".
+ * Story tab — copy from Paul's "Story DRAFT V2", images from Jezam.
  *
- * Image slots are `.ksr-placeholder` blocks labelled with what Paul and Jezam
- * asked for, so each can be swapped for <Image> as the photos arrive.
+ * To replace an image, overwrite the file in public/story-contents under the
+ * same name. The static imports above pick up the new file, its dimensions,
+ * and a fresh cache-busting URL automatically.
  */
 
 const OPENING_LINES = [
@@ -84,10 +95,8 @@ export default function StoryPage() {
           {/* SECTION 1 — Scaling Bolder */}
           <section className="mt-10">
             <StoryImage
-              src="/story-contents/section-scaling-bolder.jpg"
+              src={sectionScalingBolder}
               alt="Scaling Bolder"
-              width={1920}
-              height={1080}
               priority
             />
 
@@ -107,10 +116,8 @@ export default function StoryPage() {
 
             <div className="mt-8">
               <StoryImage
-                src="/story-contents/hero-park-entrance.jpg"
+                src={heroParkEntrance}
                 alt="The front entrance of Bolder Adventure Park"
-                width={1920}
-                height={1080}
               />
             </div>
           </section>
@@ -178,16 +185,12 @@ export default function StoryPage() {
                 into the artwork, which would be unreadable at half width. */}
             <div className="mt-8 flex flex-col gap-4">
               <StoryImage
-                src="/story-contents/construction.jpg"
+                src={construction}
                 alt="Building the mountain during construction"
-                width={1920}
-                height={1080}
               />
               <StoryImage
-                src="/story-contents/collage.jpg"
+                src={collage}
                 alt="Hailey, Ethan and Shay helping with marketing photos"
-                width={1920}
-                height={1080}
               />
             </div>
           </section>
@@ -219,17 +222,13 @@ export default function StoryPage() {
             {/* Square sources, kept square so no review text is cropped. */}
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <StoryImage
-                src="/story-contents/review-1.jpg"
+                src={review1}
                 alt="A five-star Google review from a Bolder visitor"
-                width={1080}
-                height={1080}
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 388px"
               />
               <StoryImage
-                src="/story-contents/review-2.jpg"
+                src={review2}
                 alt="A five-star Google review from a Bolder visitor"
-                width={1080}
-                height={1080}
                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 388px"
               />
             </div>
@@ -242,10 +241,8 @@ export default function StoryPage() {
                 any fixed aspect would crop it to an unreadable sliver. */}
             <div className="mt-5">
               <StoryImage
-                src="/story-contents/tier-list.jpg"
+                src={tierList}
                 alt="All seven reward tiers and what each one includes"
-                width={1920}
-                height={8150}
               />
             </div>
             <Link href="/rewards" className="ksr-btn ksr-btn-primary mt-6">
